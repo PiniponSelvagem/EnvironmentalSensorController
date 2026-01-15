@@ -1,0 +1,9 @@
+*.bin
+.vscode/*
+build/**
+*.swp
+*.log
+scripts/venv/*
+controller/.pio
+controller/.vscode
+secrets.hpp

@@ -1,5 +1,5 @@
 # Environmental Sensor Controller
-Temperature and humidity sensor controller (Terminal) that periodically sends its data over LoRa, which then a Gateway that receives it, Publishes to a MQTT broker. This project started as a small project to improve my personal [PiniCore-Embedded](https://github.com/PiniponSelvagem/EnvironmentalSensorController) library, and to add some sensors to my Home Assistant system.
+Temperature and humidity sensor controller (Terminal) that periodically sends its data over LoRa, which then a Gateway that receives it, Publishes to a MQTT broker. This project started as a small project to improve my personal [PiniCore-Embedded](https://github.com/PiniponSelvagem/PiniCore-Embedded) library, and to add some sensors to my Home Assistant system.
 
 
 ## How it works

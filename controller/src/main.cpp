@@ -2,12 +2,9 @@
 #include "global.hpp"
 
 #include <pinicore.hpp>
-#include <Arduino.h>
-#include <ArduinoHttpClient.h>
 
 #include "controller/envsensorgateway.hpp"
 #include "controller/envsensorterminal.hpp"
-
 
 #define TAG_MAIN    "main"
 
@@ -28,10 +25,6 @@
 #endif
 IEnvSensor* controller = &_controller;
 
-//Storage storage;
-
-//Led led;
-
 
 void setup() {
     Serial.begin(115200);
@@ -39,14 +32,6 @@ void setup() {
 
     LOG_I(TAG_MAIN, "Firmware: [%d] | Build: [%s, %s]", FIRMWARE_VERSION, __DATE__, __TIME__);
     LOG_I(TAG_MAIN, "Enviroment Sensor, by: PiniponSelvagem");
-
-    /*
-    uint8_t ledPin[1] = { 25 };
-    led.init(ledPin, 1);
-    led.set(0, true);
-    */
-
-    //storage.init(STORAGE_ID, sizeof(STORAGE_ID));
 
 #ifdef GATEWAY
     #ifdef USE_WIFI

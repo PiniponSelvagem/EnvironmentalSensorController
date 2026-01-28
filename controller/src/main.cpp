@@ -8,9 +8,7 @@
 
 #define TAG_MAIN    "main"
 
-
-#define USE_WIFI
-#ifdef USE_WIFI
+#ifndef USE_GSM_NETWORK
     WiFiComm wifi;
     INetwork* network = (INetwork*)&wifi;
 #else
@@ -33,11 +31,16 @@ void setup() {
     LOG_I(TAG_MAIN, "Firmware: [%d] | Build: [%s, %s]", FIRMWARE_VERSION, __DATE__, __TIME__);
     LOG_I(TAG_MAIN, "Enviroment Sensor, by: PiniponSelvagem");
 
+    /* Watchdog setup */
+    watchdogSetup(WDTG_INTERNAL_TIMER_IN_SECONDS);
+    watchdogEnable();
+
 #ifdef GATEWAY
-    #ifdef USE_WIFI
+    #ifndef USE_GSM_NETWORK
         wifi.init();
         wifi.config(WIFI_SSID, WIFI_PASS);
     #else
+        #error USE_GSM_NETWORK currently not supported. To support it, get an ESP that has GSM module and setup the correct pins.
         mobile.init(23, 4, 5, 27, 26);
         mobile.config("", "");
     #endif
@@ -55,6 +58,7 @@ void setup() {
 }
 
 void loop() {
+    watchdogIamAlive();
 #ifdef GATEWAY
     network->maintain();
 #endif

@@ -27,11 +27,11 @@ radioid_t EnvSensorTerminal::myRadioId() const {
 }
 
 void EnvSensorTerminal::sensorsInit() {
-    m_sensorTH.init(22, EDHT::DHT_11);
+    m_sensorTH.init(PIN_DHT, EDHT::DHT_11);
 }
 
 void EnvSensorTerminal::batteryInit() {
-    m_battery.init(35, BATTERY_CORRECTION_TTGO_LORA32_DISPLAY);
+    m_battery.init(PIN_BATTERY, BATTERY_CORRECTION_TTGO_LORA32_DISPLAY);
 }
 
 void EnvSensorTerminal::loraSendStatus() {

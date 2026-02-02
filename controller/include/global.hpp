@@ -13,8 +13,10 @@
     /* PIN defines */
         #define PIN_BATTERY 35  // Battery read
         #define PIN_DHT     22  // Digital Humidity Temperature sensor
-        /****************/
+        #define PIN_WAKEUP  14  // Wake-up on button press
     /***************/
+    #define WAKEUP_TIME_MS  10000    // Milliseconds that should stay awake after button press
+    #define SLEEP_TIME_SECS (15) // Amount of seconds the controller should sleep between sensors reporting
 #endif
 #define WDTG_INTERNAL_TIMER_IN_SECONDS   120
 //#define USE_GSM_NETWORK   // Use GSM network instead of WiFi. Currently not supported.

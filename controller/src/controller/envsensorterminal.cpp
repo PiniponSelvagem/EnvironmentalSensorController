@@ -1,3 +1,5 @@
+#ifdef TERMINAL
+
 #include "controller/envsensorterminal.hpp"
 #include "secrets.hpp"
 #include "global.hpp"
@@ -24,7 +26,7 @@ void EnvSensorTerminal::loopController() {
     }
 
     if (
-        (getMillis() > (m_initEndAt+WAKEUP_TIME_MS)) && 
+        (getMillis() > (m_initEndAt+WAKEUP_TIME_MS) || !m_manualWakeUp) && 
         (p_lora.getSendQueueSize() == 0)
     ) {
         sleep();
@@ -90,8 +92,8 @@ void EnvSensorTerminal::oledRender() {
     m_oled.clearDisplay();
     m_oled.printf("%d %%\n\n", m_batteryPercentage);
     m_oled.setTextSize(3);
-    m_oled.printf("  %d C\n", m_temperature);
-    m_oled.printf("  %d %%\n", m_humidity);
+    m_oled.printf("  %.0f C\n", m_temperature);
+    m_oled.printf("  %.0f %%\n", m_humidity);
     m_oled.display();
 }
 
@@ -116,3 +118,5 @@ void EnvSensorTerminal::sleep() {
     }
     esp_deep_sleep_start();
 }
+
+#endif // TERMINAL

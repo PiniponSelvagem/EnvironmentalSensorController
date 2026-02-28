@@ -1,3 +1,5 @@
+#ifdef GATEWAY
+
 #include "controller/envsensorgateway.hpp"
 #include "secrets.hpp"
 #include "global.hpp"
@@ -111,3 +113,5 @@ void EnvSensorGateway::loraSetCallbacks() {
         }
     );
 }
+
+#endif // GATEWAY

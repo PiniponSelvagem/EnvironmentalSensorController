@@ -3,8 +3,11 @@
 
 #include <pinicore.hpp>
 
-#include "controller/envsensorgateway.hpp"
-#include "controller/envsensorterminal.hpp"
+#ifdef GATEWAY
+    #include "controller/envsensorgateway.hpp"
+#else
+    #include "controller/envsensorterminal.hpp"
+#endif
 
 #define TAG_MAIN    "main"
 

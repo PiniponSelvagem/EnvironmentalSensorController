@@ -92,8 +92,8 @@ void EnvSensorTerminal::oledRender() {
     m_oled.clearDisplay();
     m_oled.printf("%d %%\n\n", m_batteryPercentage);
     m_oled.setTextSize(3);
-    m_oled.printf("  %.0f C\n", m_temperature);
-    m_oled.printf("  %.0f %%\n", m_humidity);
+    m_oled.printf("  %d C\n", (int)m_temperature);
+    m_oled.printf("  %d %%\n", (int)m_humidity);
     m_oled.display();
 }
 

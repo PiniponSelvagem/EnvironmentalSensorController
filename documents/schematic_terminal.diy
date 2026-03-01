@@ -18,11 +18,11 @@
       <alpha>127</alpha>
       <value>MAIN</value>
       <controlPoints>
-        <point x="1.9" y="1.6"/>
-        <point x="4.0" y="3.4"/>
+        <point x="1.8" y="1.7"/>
+        <point x="3.6" y="3.5"/>
       </controlPoints>
-      <firstPoint x="1.9" y="1.6"/>
-      <secondPoint x="4.0" y="3.4"/>
+      <firstPoint x="1.8" y="1.7"/>
+      <secondPoint x="3.6" y="3.5"/>
       <boardColor hex="f8ebb3"/>
       <borderColor hex="ada47d"/>
       <coordinateColor hex="b6b6b6"/>
@@ -30,8 +30,8 @@
       <coordinateOrigin>Top_Left</coordinateOrigin>
       <coordinateDisplay>One_Side</coordinateDisplay>
       <yType>Letters</yType>
-      <length value="55.88" unit="mm"/>
-      <width value="45.72" unit="mm"/>
+      <length value="66.04" unit="mm"/>
+      <width value="55.88" unit="mm"/>
       <mode>TwoPoints</mode>
       <boardUndersideDisplay>NONE</boardUndersideDisplay>
       <undersideOffset value="0.1" unit="in"/>
@@ -71,11 +71,11 @@
       <alpha>127</alpha>
       <value>DHT_BACKGROUND</value>
       <controlPoints>
-        <point x="3.5" y="2.0"/>
-        <point x="3.8" y="2.4"/>
+        <point x="2.0" y="2.4"/>
+        <point x="2.3" y="2.8"/>
       </controlPoints>
-      <firstPoint x="3.5" y="2.0"/>
-      <secondPoint x="3.8" y="2.4"/>
+      <firstPoint x="2.0" y="2.4"/>
+      <secondPoint x="2.3" y="2.8"/>
       <boardColor hex="f8ebb3"/>
       <borderColor hex="ada47d"/>
       <coordinateColor hex="b6b6b6"/>
@@ -96,9 +96,9 @@
       <name>3V</name>
       <alpha>127</alpha>
       <points>
-        <point x="3.9" y="1.9"/>
-        <point x="3.5" y="1.9"/>
-        <point x="3.7" y="1.9"/>
+        <point x="2.5" y="3.4"/>
+        <point x="2.5" y="2.5"/>
+        <point x="2.5" y="2.95"/>
       </points>
       <bodyColor hex="ffffff"/>
       <borderColor hex="000000"/>
@@ -118,9 +118,31 @@
       <name>3V</name>
       <alpha>127</alpha>
       <points>
-        <point x="3.5" y="2.1"/>
-        <point x="3.5" y="1.9"/>
-        <point x="3.5" y="2.0"/>
+        <point x="2.3" y="2.5"/>
+        <point x="2.5" y="2.5"/>
+        <point x="2.4" y="2.5"/>
+      </points>
+      <bodyColor hex="ffffff"/>
+      <borderColor hex="000000"/>
+      <labelColor hex="000000"/>
+      <leadColor hex="cc0000"/>
+      <display>NAME</display>
+      <flipStanding>false</flipStanding>
+      <labelOriantation>Directional</labelOriantation>
+      <moveLabel>false</moveLabel>
+      <hideShortLeads>false</hideShortLeads>
+      <thickness value="1.0" unit="mm"/>
+      <layer>_1</layer>
+      <endingStyle>Round</endingStyle>
+    </diylc.connectivity.CopperTrace>
+    <diylc.connectivity.CopperTrace>
+      <id>f6456bf2-e5c1-481b-8148-6ee5322eea94</id>
+      <name>3V</name>
+      <alpha>127</alpha>
+      <points>
+        <point x="2.5" y="3.4"/>
+        <point x="3.5" y="3.4"/>
+        <point x="3.0" y="3.4"/>
       </points>
       <bodyColor hex="ffffff"/>
       <borderColor hex="000000"/>
@@ -141,8 +163,8 @@
       <alpha>127</alpha>
       <points>
         <point x="3.3" y="2.9"/>
-        <point x="3.9" y="2.9"/>
-        <point x="3.6" y="2.9"/>
+        <point x="3.5" y="2.9"/>
+        <point x="3.4" y="2.9"/>
       </points>
       <bodyColor hex="ffffff"/>
       <borderColor hex="000000"/>
@@ -162,9 +184,9 @@
       <name>3V</name>
       <alpha>127</alpha>
       <points>
-        <point x="3.9" y="2.9"/>
-        <point x="3.9" y="1.9"/>
-        <point x="3.9" y="2.4"/>
+        <point x="3.5" y="2.9"/>
+        <point x="3.5" y="3.4"/>
+        <point x="3.5" y="3.15"/>
       </points>
       <bodyColor hex="ffffff"/>
       <borderColor hex="000000"/>
@@ -185,8 +207,52 @@
       <alpha>127</alpha>
       <points>
         <point x="2.6" y="2.4"/>
-        <point x="2.4" y="2.4"/>
         <point x="2.5" y="2.4"/>
+        <point x="2.55" y="2.4"/>
+      </points>
+      <bodyColor hex="ffffff"/>
+      <borderColor hex="000000"/>
+      <labelColor hex="000000"/>
+      <leadColor hex="000000"/>
+      <display>NAME</display>
+      <flipStanding>false</flipStanding>
+      <labelOriantation>Directional</labelOriantation>
+      <moveLabel>false</moveLabel>
+      <hideShortLeads>false</hideShortLeads>
+      <thickness value="1.0" unit="mm"/>
+      <layer>_1</layer>
+      <endingStyle>Round</endingStyle>
+    </diylc.connectivity.CopperTrace>
+    <diylc.connectivity.CopperTrace>
+      <id>3735ca20-ba05-49d0-99e5-d2e9d37183e9</id>
+      <name>WAKE</name>
+      <alpha>127</alpha>
+      <points>
+        <point x="2.5" y="2.2"/>
+        <point x="2.5" y="2.4"/>
+        <point x="2.5" y="2.3"/>
+      </points>
+      <bodyColor hex="ffffff"/>
+      <borderColor hex="000000"/>
+      <labelColor hex="000000"/>
+      <leadColor hex="000000"/>
+      <display>NAME</display>
+      <flipStanding>false</flipStanding>
+      <labelOriantation>Directional</labelOriantation>
+      <moveLabel>false</moveLabel>
+      <hideShortLeads>false</hideShortLeads>
+      <thickness value="1.0" unit="mm"/>
+      <layer>_1</layer>
+      <endingStyle>Round</endingStyle>
+    </diylc.connectivity.CopperTrace>
+    <diylc.connectivity.CopperTrace>
+      <id>3735ca20-ba05-49d0-99e5-d2e9d37183e9</id>
+      <name>WAKE</name>
+      <alpha>127</alpha>
+      <points>
+        <point x="2.5" y="2.2"/>
+        <point x="2.3" y="2.2"/>
+        <point x="2.4" y="2.2"/>
       </points>
       <bodyColor hex="ffffff"/>
       <borderColor hex="000000"/>
@@ -206,9 +272,9 @@
       <name>GND</name>
       <alpha>127</alpha>
       <points>
-        <point x="2.2" y="2.4"/>
-        <point x="2.1" y="2.4"/>
-        <point x="2.15" y="2.4"/>
+        <point x="2.1" y="2.2"/>
+        <point x="1.9" y="2.2"/>
+        <point x="2.0" y="2.2"/>
       </points>
       <bodyColor hex="ffffff"/>
       <borderColor hex="000000"/>
@@ -228,9 +294,9 @@
       <name>GND</name>
       <alpha>127</alpha>
       <points>
-        <point x="2.1" y="2.4"/>
-        <point x="2.1" y="3.3"/>
-        <point x="2.1" y="2.85"/>
+        <point x="1.9" y="2.2"/>
+        <point x="1.9" y="3.3"/>
+        <point x="1.9" y="2.75"/>
       </points>
       <bodyColor hex="ffffff"/>
       <borderColor hex="000000"/>
@@ -250,9 +316,9 @@
       <name>GND</name>
       <alpha>127</alpha>
       <points>
-        <point x="2.1" y="3.3"/>
-        <point x="3.5" y="3.3"/>
-        <point x="2.8" y="3.3"/>
+        <point x="1.9" y="3.3"/>
+        <point x="3.4" y="3.3"/>
+        <point x="2.65" y="3.3"/>
       </points>
       <bodyColor hex="ffffff"/>
       <borderColor hex="000000"/>
@@ -272,9 +338,31 @@
       <name>GND</name>
       <alpha>127</alpha>
       <points>
-        <point x="3.5" y="3.3"/>
-        <point x="3.5" y="2.3"/>
-        <point x="3.5" y="2.8"/>
+        <point x="2.4" y="3.3"/>
+        <point x="2.4" y="2.7"/>
+        <point x="2.4" y="3.0"/>
+      </points>
+      <bodyColor hex="ffffff"/>
+      <borderColor hex="000000"/>
+      <labelColor hex="000000"/>
+      <leadColor hex="000000"/>
+      <display>NAME</display>
+      <flipStanding>false</flipStanding>
+      <labelOriantation>Directional</labelOriantation>
+      <moveLabel>false</moveLabel>
+      <hideShortLeads>false</hideShortLeads>
+      <thickness value="1.0" unit="mm"/>
+      <layer>_1</layer>
+      <endingStyle>Round</endingStyle>
+    </diylc.connectivity.CopperTrace>
+    <diylc.connectivity.CopperTrace>
+      <id>b7653ca6-d11a-44e0-9f6f-44bf875bb4ee</id>
+      <name>GND</name>
+      <alpha>127</alpha>
+      <points>
+        <point x="2.4" y="2.7"/>
+        <point x="2.3" y="2.7"/>
+        <point x="2.35" y="2.7"/>
       </points>
       <bodyColor hex="ffffff"/>
       <borderColor hex="000000"/>
@@ -294,9 +382,31 @@
       <name>GND</name>
       <alpha>127</alpha>
       <points>
-        <point x="3.5" y="2.8"/>
-        <point x="3.3" y="2.8"/>
+        <point x="3.4" y="3.3"/>
         <point x="3.4" y="2.8"/>
+        <point x="3.4" y="3.05"/>
+      </points>
+      <bodyColor hex="ffffff"/>
+      <borderColor hex="000000"/>
+      <labelColor hex="000000"/>
+      <leadColor hex="000000"/>
+      <display>NAME</display>
+      <flipStanding>false</flipStanding>
+      <labelOriantation>Directional</labelOriantation>
+      <moveLabel>false</moveLabel>
+      <hideShortLeads>false</hideShortLeads>
+      <thickness value="1.0" unit="mm"/>
+      <layer>_1</layer>
+      <endingStyle>Round</endingStyle>
+    </diylc.connectivity.CopperTrace>
+    <diylc.connectivity.CopperTrace>
+      <id>eee121d0-1f77-466b-83cf-3e8752655b22</id>
+      <name>GND</name>
+      <alpha>127</alpha>
+      <points>
+        <point x="3.4" y="2.8"/>
+        <point x="3.3" y="2.8"/>
+        <point x="3.35" y="2.8"/>
       </points>
       <bodyColor hex="ffffff"/>
       <borderColor hex="000000"/>
@@ -316,9 +426,9 @@
       <name>DHT_OUT</name>
       <alpha>127</alpha>
       <points>
-        <point x="3.5" y="2.2"/>
-        <point x="3.3" y="2.2"/>
-        <point x="3.4" y="2.2"/>
+        <point x="2.3" y="2.6"/>
+        <point x="2.6" y="2.6"/>
+        <point x="2.45" y="2.6"/>
       </points>
       <bodyColor hex="ffffff"/>
       <borderColor hex="000000"/>
@@ -422,10 +532,10 @@
       <value></value>
       <orientation>DEFAULT</orientation>
       <controlPoints>
-        <point x="2.2" y="2.4"/>
-        <point x="2.2" y="2.4"/>
-        <point x="2.395" y="2.4"/>
-        <point x="2.395" y="2.4"/>
+        <point x="2.1" y="2.2"/>
+        <point x="2.1" y="2.2"/>
+        <point x="2.295" y="2.2"/>
+        <point x="2.295" y="2.2"/>
       </controlPoints>
       <display>BOTH</display>
       <bodyColor hex="c0c0c0"/>
@@ -443,9 +553,9 @@
       <alpha>127</alpha>
       <orientation>DEFAULT</orientation>
       <controlPoints>
-        <point x="3.5" y="2.1"/>
-        <point x="3.5" y="2.2"/>
-        <point x="3.5" y="2.3"/>
+        <point x="2.3" y="2.5"/>
+        <point x="2.3" y="2.6"/>
+        <point x="2.3" y="2.7"/>
       </controlPoints>
       <rowCount>1</rowCount>
       <columnCount>3</columnCount>
@@ -458,11 +568,11 @@
       <id>5ad6cec2-2044-4cf7-98a6-faebc462d91f</id>
       <name>LAB1</name>
       <controlPoints>
-        <point x="4.1" y="2.0"/>
-        <point x="5.2" y="2.4"/>
+        <point x="1.7999999999999994" y="1.3"/>
+        <point x="2.9" y="1.7"/>
       </controlPoints>
-      <firstPoint x="4.1" y="2.0"/>
-      <secondPoint x="5.2" y="2.4"/>
+      <firstPoint x="1.7999999999999994" y="1.3"/>
+      <secondPoint x="2.9" y="1.7"/>
       <font reference="../../diylc.misc.WrapLabel/font"/>
       <color hex="000000"/>
       <horizontalAlignment>LEFT</horizontalAlignment>
@@ -472,14 +582,14 @@
       <id>e6cf1bcd-ebde-48d9-96ab-85679b883f74</id>
       <name>LAB2</name>
       <controlPoints>
-        <point x="3.6" y="2.08"/>
-        <point x="3.8" y="2.28"/>
+        <point x="2.0" y="2.48"/>
+        <point x="2.3" y="2.7"/>
       </controlPoints>
-      <firstPoint x="3.6" y="2.08"/>
-      <secondPoint x="3.8" y="2.28"/>
+      <firstPoint x="2.0" y="2.48"/>
+      <secondPoint x="2.3" y="2.7"/>
       <font name="Dialog.plain" size="14" style="0"/>
       <color hex="000000"/>
-      <horizontalAlignment>LEFT</horizontalAlignment>
+      <horizontalAlignment>CENTER</horizontalAlignment>
       <value>3V3&lt;br&gt;OUT&lt;br&gt;GND</value>
     </diylc.misc.WrapLabel>
   </components>

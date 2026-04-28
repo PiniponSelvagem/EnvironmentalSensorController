@@ -18,6 +18,8 @@
 
 #include <pinicore.hpp>
 
+using namespace pinicore;
+
 /**
  * @brief   LoRa message tagId.
  */

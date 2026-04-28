@@ -19,6 +19,8 @@
 #include <pinicore.hpp>
 #include "ienvsensor.hpp"
 
+using namespace pinicore;
+
 #define ESG_MQTT_TOPIC_MAX_SIZE 64
 
 class EnvSensorGateway : public IEnvSensor {

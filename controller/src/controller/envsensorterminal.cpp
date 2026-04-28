@@ -45,7 +45,7 @@ void EnvSensorTerminal::sensorsInit() {
 }
 
 void EnvSensorTerminal::batteryInit() {
-    m_battery.init(PIN_BATTERY, BATTERY_CORRECTION_TTGO_LORA32_DISPLAY);
+    m_battery.init(PIN_BATTERY);
 }
 
 void EnvSensorTerminal::sleepInit() {
@@ -80,7 +80,7 @@ void EnvSensorTerminal::readSensors() {
 
     m_humidity = m_sensorTH.readHumidity();
     m_temperature = m_sensorTH.readTemperature();
-    m_batteryPercentage = m_battery.percentage();
+    m_batteryPercentage = m_battery.getPercentage();
 }
 
 void EnvSensorTerminal::oledRender() {

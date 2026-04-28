@@ -21,6 +21,8 @@
 
 #include <Adafruit_SSD1306.h>
 
+using namespace pinicore;
+
 class EnvSensorTerminal : public IEnvSensor {
     public:
         /**
@@ -89,7 +91,7 @@ class EnvSensorTerminal : public IEnvSensor {
 
 
         DHT m_sensorTH;     // Digital Humidity and Temperature sensor.
-        Battery m_battery;  // Battery status
+        BasicBattery m_battery;  // Battery status
 
         uint64_t m_initEndAt = 0; // Millis since boot that the controller was ready at.
         bool m_manualWakeUp = false;

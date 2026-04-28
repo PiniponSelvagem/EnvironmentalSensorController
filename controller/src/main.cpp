@@ -9,6 +9,8 @@
     #include "controller/envsensorterminal.hpp"
 #endif
 
+using namespace pinicore;
+
 #define TAG_MAIN    "main"
 
 #ifndef USE_GSM_NETWORK

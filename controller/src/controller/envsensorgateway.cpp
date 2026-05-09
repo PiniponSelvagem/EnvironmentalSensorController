@@ -20,6 +20,8 @@
 
 #define ESG_VERSION_BUFFER_MAX  16
 
+#define RADIO_ID    0   // TODO: This must be changed, via a Web interface will be good and saved to flash
+
 
 void EnvSensorGateway::init(INetwork* network) {
     m_network = network;
@@ -31,6 +33,7 @@ void EnvSensorGateway::init(INetwork* network) {
 
     loraInit();
     loraSetCallbacks();
+    LOG_I(PINI_TAG_ESG, "Gateway radio ID: [%d]", myRadioId());
 }
 
 
@@ -44,7 +47,7 @@ bool EnvSensorGateway::isTerminal() const {
     return false;
 }
 radioid_t EnvSensorGateway::myRadioId() const {
-    return 0;
+    return RADIO_ID;
 }
 
 void EnvSensorGateway::mqttBuildTopics() {

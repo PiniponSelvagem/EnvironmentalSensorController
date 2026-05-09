@@ -13,18 +13,19 @@
     /* PIN defines */
         #define PIN_BATTERY 35  // Battery read
         #define PIN_DHT     13  // Digital Humidity Temperature sensor
-        #define PIN_WAKEUP  14  // Wake-up on button press
+        #define PIN_WAKEUP  14  // Wake-up on button press. NOTE: before changing this, check/change the pins in "EnvSensorTerminal::sleep"
     /***************/
-    #define WAKEUP_TIME_MS  10000    // Milliseconds that should stay awake after button press
-    #define SLEEP_TIME_SECS (15*60)  // Amount of seconds the controller should sleep between sensors reporting
+    #define WAKEUP_TIME_MS               10000        // Milliseconds that should stay awake after button press
+    #define SLEEP_TIME_SECS              (15*60)      // Amount of seconds the controller should sleep between sensors reporting
+    #define SLEEP_TIME_SECS_CRITICAL_BAT (7*24*60*60) // Amount of seconds the controller should sleep when battery is critical (TTGO Lora32 does not have low-voltage power cuttoff)
 #endif
 #define WDTG_INTERNAL_TIMER_IN_SECONDS   120
 //#define USE_GSM_NETWORK   // Use GSM network instead of WiFi. Currently not supported.
 
 /* Common PIN defines */
     #define PIN_LED         15
-    #define PIN_I2C_SDA     21  // curerntly not in use but are the defaults for I2C
-    #define PIN_I2C_SCL     22  // curerntly not in use but are the defaults for I2C
+    #define PIN_I2C_SDA     21  // currently not in use but are the defaults for I2C
+    #define PIN_I2C_SCL     22  // currently not in use but are the defaults for I2C
     /** LoRa **/
         #define PIN_LORA_MOSI   27
         #define PIN_LORA_MISO   19

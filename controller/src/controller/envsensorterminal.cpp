@@ -6,6 +6,8 @@
 
 #define PINI_TAG_EMT    "terminal"
 
+#define RADIO_ID    1  // TODO: This must be changed, via a Web interface will be good and saved to flash
+
 void EnvSensorTerminal::init() {
     sensorsInit();
     batteryInit();
@@ -14,6 +16,7 @@ void EnvSensorTerminal::init() {
     if (m_manualWakeUp) {   // TODO: improve this logic
         oledInit();
     }
+    LOG_I(PINI_TAG_EMT, "Terminal radio ID: [%d]", myRadioId());
     m_initEndAt = getMillis();
 }
 
@@ -37,7 +40,7 @@ bool EnvSensorTerminal::isTerminal() const {
     return true;
 }
 radioid_t EnvSensorTerminal::myRadioId() const {
-    return 0;
+    return RADIO_ID;
 }
 
 void EnvSensorTerminal::sensorsInit() {
@@ -65,10 +68,6 @@ void EnvSensorTerminal::sleepInit() {
         default:    // There are more cases but not relevant
             break;
     }
-
-    /* Configure timed sleep */
-    uint64_t timesleep_ns = SLEEP_TIME_SECS * 1000000LL;   // sec * nano
-    esp_sleep_enable_timer_wakeup(timesleep_ns);
 }
 
 void EnvSensorTerminal::oledInit() {
@@ -108,14 +107,58 @@ void EnvSensorTerminal::loraSendStatus() {
 }
 
 void EnvSensorTerminal::sleep() {
-    LOG_I(PINI_TAG_EMT, "Sleeping...");
+    /* Configure timed sleep */
+    uint64_t timesleep_ns = 1;
+    if (m_batteryPercentage > 0) {
+        timesleep_ns = SLEEP_TIME_SECS;
+    }
+    else {
+        timesleep_ns = SLEEP_TIME_SECS_CRITICAL_BAT;
+    }
+    timesleep_ns = timesleep_ns * 1000000LL; // sec * nano
+    esp_sleep_enable_timer_wakeup(timesleep_ns);
+
+    /* OLED is ON, turn it OFF */
     if (m_manualWakeUp) {
-        // TODO: turn off OLED
+        // TODO: place this in a library, turn off OLED
         Wire.beginTransmission(0x3C);
         Wire.write(0x00);
         Wire.write(0xAE);
         Wire.endTransmission();
     }
+
+    LOG_I(PINI_TAG_EMT, "Sleeping...");
+
+    /* "Turn OFF" pins to reduce battery consumption during sleep */
+    /* This pins where tested for TTGO Lora32 */
+    pinMode(0,INPUT);
+    //pinMode(1,INPUT);     // TX pin, used for debug
+    pinMode(2,INPUT);
+    //pinMode(3,INPUT);     // RX pin, used for debug
+    pinMode(4,INPUT);
+    pinMode(5,INPUT);
+    pinMode(12,INPUT);
+    pinMode(13,INPUT);
+    //pinMode(14,INPUT);    // used by PIN_WAKEUP
+    pinMode(15,INPUT);
+    //pinMode(16,INPUT);    // rst:0x8 (TG1WDT_SYS_RESET)
+    //pinMode(17,INPUT);    // rst:0x7 (TG0WDT_SYS_RESET)
+    pinMode(18,INPUT);
+    pinMode(19,INPUT);
+    pinMode(21,INPUT);
+    pinMode(22,INPUT);
+    pinMode(23,INPUT);
+    pinMode(25,INPUT);
+    pinMode(26,INPUT);
+    pinMode(27,INPUT);
+    pinMode(32,INPUT);
+    pinMode(33,INPUT);
+    pinMode(34,INPUT);
+    pinMode(35,INPUT);
+    pinMode(36,INPUT);
+    pinMode(39,INPUT);
+    /* END of "Turn OFF" pins */
+
     esp_deep_sleep_start();
 }
 

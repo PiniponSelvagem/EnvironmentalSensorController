@@ -17,13 +17,13 @@
 #define _PINICONTROLLER_ENVSENSORGATEWAY_H_
 
 #include <pinicore.hpp>
-#include "ienvsensor.hpp"
+#include "ienvsensorlora.hpp"
 
 using namespace pinicore;
 
 #define ESG_MQTT_TOPIC_MAX_SIZE 64
 
-class EnvSensorGateway : public IEnvSensor {
+class EnvSensorGateway : public IEnvSensorLora {
     public:
         /**
          * @brief   Initialize the Gateway using a specific network interface, MQTT and LoRa communication.

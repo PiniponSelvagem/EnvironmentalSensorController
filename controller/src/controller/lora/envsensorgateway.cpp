@@ -1,6 +1,6 @@
 #ifdef GATEWAY
 
-#include "controller/envsensorgateway.hpp"
+#include "controller/lora/envsensorgateway.hpp"
 #include "secrets.hpp"
 #include "global.hpp"
 

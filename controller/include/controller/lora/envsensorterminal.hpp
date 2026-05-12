@@ -17,13 +17,13 @@
 #define _PINICONTROLLER_ENVSENSORTERMINAL_H_
 
 #include <pinicore.hpp>
-#include "ienvsensor.hpp"
+#include "ienvsensorlora.hpp"
 
 #include <Adafruit_SSD1306.h>
 
 using namespace pinicore;
 
-class EnvSensorTerminal : public IEnvSensor {
+class EnvSensorTerminal : public IEnvSensorLora {
     public:
         /**
          * @brief   Initialize the Terminal sensors and LoRa communication.

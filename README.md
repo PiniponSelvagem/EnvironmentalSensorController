@@ -74,13 +74,13 @@ Parameters:
 ---
 
 ### Status
-Function: Terminal status payload will be placed in this topic by teh receiving gateway<br>
+Function: Terminal status payload will be placed in this topic by the receiving gateway<br>
 Topic: ```environment/sensors_async/v0/{gateway_serial}/up/status```<br>
 Payload:<br>
 - **radioId**: ```uint64_t```, 64 bit positive value, serial of the Terminal that sent the payload
 - **version**: ```uint16_t```, 16 bit positive value, firmware version of the Terminal that sent the payload
 - **rssi**: ```int```, negative value tht represents the signal strength in dB
-- **battery**: ```uint8_t``, 8 bit positive value that ranges from 0 to 100 and represents the battery status of the Terminal
+- **battery**: ```uint8_t```, 8 bit positive value that ranges from 0 to 100 and represents the battery status of the Terminal
 - **temperature**: ```int8_t```, 8 bit value that has the temperature read by the sensor from the Terminal
 - **humidity**: ```uint8_t```, 8 bit positive value that has the humidity read by the sensor from the Terminal
 
@@ -99,9 +99,6 @@ Payload example: ```6,1,-83,74,22,68```
 
 
 ## TODO and/or WIP
-- Terminal:
-    - sleep function, duration might not be precise since board does not have RTC
-    - wake up on a button press and display for a short amount of time the current sensor data, in the build in display
 - Gateway:
     - encrypt credentials
     - admin topic to ask gateway some debug information

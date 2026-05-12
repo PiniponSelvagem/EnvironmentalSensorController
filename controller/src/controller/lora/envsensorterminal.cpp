@@ -1,6 +1,6 @@
 #ifdef TERMINAL
 
-#include "controller/envsensorterminal.hpp"
+#include "controller/lora/envsensorterminal.hpp"
 #include "secrets.hpp"
 #include "global.hpp"
 

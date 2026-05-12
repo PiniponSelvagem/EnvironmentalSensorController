@@ -1,14 +1,16 @@
-#include "controller/ienvsensor.hpp"
+#if defined(GATEWAY) || defined(TERMINAL)
+
+#include "controller/lora/ienvsensorlora.hpp"
 #include "global.hpp"
 
 
-void IEnvSensor::loop() {
+void IEnvSensorLora::loop() {
     p_lora.maintain();
     loopController();
 }
 
 
-void IEnvSensor::loraInit() {
+void IEnvSensorLora::loraInit() {
     p_lora.init(
         PIN_LORA_MOSI, PIN_LORA_MISO, PIN_LORA_SCLK,
         PIN_LORA_CS, PIN_LORA_RST, PIN_LORA_DIO0,
@@ -21,3 +23,4 @@ void IEnvSensor::loraInit() {
     p_lora.setBandwidth(LORA_BANDWIDTH);
 }
 
+#endif // GATEWAY || TERMINAL

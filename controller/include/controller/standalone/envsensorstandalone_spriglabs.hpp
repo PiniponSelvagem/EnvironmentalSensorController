@@ -1,6 +1,6 @@
 /**
-* @file     envsensorgateway.hpp
-* @brief    Environment gateway controller logic.
+* @file     envsensorstandalone_spriglabs.hpp
+* @brief    Environment standalone controller logic, SprigLabs variant.
 * @author   PiniponSelvagem
 *
 * Copyright(C) PiniponSelvagem
@@ -26,7 +26,7 @@ using namespace pinicore;
 class EnvSensorStandaloneSprigLabs : public IEnvSensor {
     public:
         /**
-         * @brief   Initialize the Gateway using a specific network interface, MQTT and LoRa communication.
+         * @brief   Initialize the Standalone using a specific network interface and MQTT.
          * @param   network Network interface to use for internet communication.
          */
         void init(INetwork* network);

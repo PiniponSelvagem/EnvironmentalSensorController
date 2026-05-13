@@ -59,22 +59,22 @@ void EnvSensorStandaloneSprigLabs::loopController() {
                 m_mqtt.publish(m_mqttTopicPublish_battery, payload, false);
 
                 // LUX
-                snprintf(subTopic, sizeof(subTopic), "%s/%s", m_mqttTopicPublish_lux, 0);
+                snprintf(subTopic, sizeof(subTopic), "%s/%d", m_mqttTopicPublish_lux, 0);
                 snprintf(payload, sizeof(payload), "%d", (int)m_sprigRoot.getLux());
                 m_mqtt.publish(subTopic, payload, false);
 
                 // TEMPERATURE
-                snprintf(subTopic, sizeof(subTopic), "%s/%s", m_mqttTopicPublish_temperature, 0);
+                snprintf(subTopic, sizeof(subTopic), "%s/%d", m_mqttTopicPublish_temperature, 0);
                 snprintf(payload, sizeof(payload), "%d", (int)m_sprigRoot.getAmbientTemperature());
                 m_mqtt.publish(subTopic, payload, false);
                 
                 // HUMIDITY
-                snprintf(subTopic, sizeof(subTopic), "%s/%s", m_mqttTopicPublish_humidity, 0);
+                snprintf(subTopic, sizeof(subTopic), "%s/%d", m_mqttTopicPublish_humidity, 0);
                 snprintf(payload, sizeof(payload), "%d", (int)m_sprigRoot.getAmbientHumidity());
                 m_mqtt.publish(subTopic, payload, false);
 
                 // HUMIDITY - SOIL
-                snprintf(subTopic, sizeof(subTopic), "%s/%s", m_mqttTopicPublish_humidity, 1);
+                snprintf(subTopic, sizeof(subTopic), "%s/%d", m_mqttTopicPublish_humidity, 1);
                 snprintf(payload, sizeof(payload), "%d", (int)m_sprigRoot.getSoilHumidity());
                 m_mqtt.publish(subTopic, payload, false);
 

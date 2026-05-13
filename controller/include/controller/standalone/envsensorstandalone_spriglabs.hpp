@@ -62,12 +62,18 @@ class EnvSensorStandaloneSprigLabs : public IEnvSensor {
         INetwork* m_network;    // Internet network interface.
         MQTT m_mqtt;            // MQTT client.
         //
-        char m_mqttTopicPublish_version[ESA_MQTT_TOPIC_MAX_SIZE];       // PUBLISH topic: firmware version
-        char m_mqttTopicPublish_type[ESA_MQTT_TOPIC_MAX_SIZE];          // PUBLISH topic: standalone type
-        char m_mqttTopicPublish_lux[ESA_MQTT_TOPIC_MAX_SIZE];           // PUBLISH topic: lux
-        char m_mqttTopicPublish_temperature[ESA_MQTT_TOPIC_MAX_SIZE];   // PUBLISH topic: temperature
-        char m_mqttTopicPublish_humidity[ESA_MQTT_TOPIC_MAX_SIZE];      // PUBLISH topic: humidity
-        
+        char m_mqttTopicPublish_online[ESA_MQTT_TOPIC_MAX_SIZE];      // PUBLISH topic: online
+        char m_mqttTopicPublish_version[ESA_MQTT_TOPIC_MAX_SIZE];     // PUBLISH topic: firmware version
+        char m_mqttTopicPublish_type[ESA_MQTT_TOPIC_MAX_SIZE];        // PUBLISH topic: standalone type
+        char m_mqttTopicPublish_battery[ESA_MQTT_TOPIC_MAX_SIZE];     // PUBLISH topic: battery percentage
+        char m_mqttTopicPublish_lux[ESA_MQTT_TOPIC_MAX_SIZE];         // PUBLISH topic: lux
+        char m_mqttTopicPublish_temperature[ESA_MQTT_TOPIC_MAX_SIZE]; // PUBLISH topic: temperature
+        char m_mqttTopicPublish_humidity[ESA_MQTT_TOPIC_MAX_SIZE];    // PUBLISH topic: humidity
+        //
+        uint64_t m_lastSensorUploadAt; // Last millis that sent sensor data
+
+        SprigC3 m_sprigC;       // ESP32 from SprigLabs
+        SprigRoot m_sprigRoot;  // ROOT, Plant sensor from SprigLabs
 };
 
 #endif // _PINICONTROLLER_ENVSENSORSTANDALONE_SPRILABS_H_

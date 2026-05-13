@@ -52,11 +52,13 @@ radioid_t EnvSensorGateway::myRadioId() const {
 
 void EnvSensorGateway::mqttBuildTopics() {
     /**** PUBLISH ****/
-    snprintf(m_mqttTopicPublish_online,  ESG_MQTT_TOPIC_MAX_SIZE, ESG_MQTT_TOPIC_P_FMT_ONLINE,  myRadioId());
-    snprintf(m_mqttTopicPublish_version, ESG_MQTT_TOPIC_MAX_SIZE, ESG_MQTT_TOPIC_P_FMT_VERSION, myRadioId());
-    snprintf(m_mqttTopicPublish_status,  ESG_MQTT_TOPIC_MAX_SIZE, ESG_MQTT_TOPIC_P_FMT_STATUS,  myRadioId());
+    snprintf(m_mqttTopicPublish_online,  sizeof(m_mqttTopicPublish_online),  ESG_MQTT_TOPIC_P_FMT_ONLINE,  myRadioId());
+    snprintf(m_mqttTopicPublish_version, sizeof(m_mqttTopicPublish_version), ESG_MQTT_TOPIC_P_FMT_VERSION, myRadioId());
+    snprintf(m_mqttTopicPublish_status,  sizeof(m_mqttTopicPublish_status),  ESG_MQTT_TOPIC_P_FMT_STATUS,  myRadioId());
 
     /**** SUBSCRIBE ****/
+
+    LOG_D(PINI_TAG_ESG, "MQTT topics callbacks configured");
 }
 
 void EnvSensorGateway::mqttInit() {
@@ -73,8 +75,14 @@ void EnvSensorGateway::mqttSetCallbacks() {
             m_mqtt.publish(m_mqttTopicPublish_online, "1", true);
 
             char version[ESG_VERSION_BUFFER_MAX];
-            snprintf(version, ESG_VERSION_BUFFER_MAX, "%d", FIRMWARE_VERSION);
+            snprintf(version, sizeof(version), "%d", FIRMWARE_VERSION);
             m_mqtt.publish(m_mqttTopicPublish_version, version, false);
+        }
+    );
+
+    m_mqtt.onSubscribe(
+        [this](const char* topic) {
+            LOG_D(PINI_TAG_ESG, "MQTT subscribe: [topic: '%s']", topic);
         }
     );
 }
@@ -108,7 +116,7 @@ void EnvSensorGateway::loraSetCallbacks() {
             );
 
             char mqttPayload[ESG_MQTT_P_BUFFER_STATUS_SIZE];
-            snprintf(mqttPayload, ESG_MQTT_P_BUFFER_STATUS_SIZE,
+            snprintf(mqttPayload, sizeof(mqttPayload),
                 "%llu,%d,%d,%d,%d,%d",
                 radioId, statusPayload->firmware, rssi, statusPayload->battery, statusPayload->temperature, statusPayload->humidity
             );

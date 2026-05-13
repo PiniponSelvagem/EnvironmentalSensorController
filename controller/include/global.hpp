@@ -24,6 +24,8 @@
 #elif defined(STANDALONE_SPRIGLABS)
     #define USE_NETWORK
     //#define STORAGE_ID "PINI_STANDALONE_ENVSENSOR"
+    #define REPORT_WAIT_TIME_SECS (15*60)   // Amount of seconds the controller should wait between sensors reporting
+    #define REPORT_WAIT_TIME_MS   (REPORT_WAIT_TIME_SECS*1000)
 #else
     #error Invalid board configuration!
 #endif

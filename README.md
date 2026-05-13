@@ -24,6 +24,7 @@ At least one Gateway should be installed in the vicinity of the Terminal control
 ### Terminal
 - **LILYGO / TTGO LoRa32 Display**
     - version used during developemnt: T3_V1.6.1
+    - environment: *TERMINAL*
 - **DHT11**
     - Digital Humidity Temperature sensor
 - **Battery**
@@ -31,7 +32,12 @@ At least one Gateway should be installed in the vicinity of the Terminal control
 
 ### Gateway
 - **LILYGO / TTGO LoRa32 Display**
+    - environment: *GATEWAY*
     - version used during developemnt: T3_V1.6.1
+
+### Standalone
+- **Sprig-C3** + **SprigLabs ROOT module**
+    - environment: *STANDALONE_SPRIGLABS*
 
 
 ## Credentials
@@ -53,7 +59,7 @@ Here is an example on how to structure it:
 ```
 
 
-## MQTT
+## MQTT - GATEWAY
 
 ### Online status
 Function: Gateway current online status<br>
@@ -94,6 +100,90 @@ Payload example: ```6,1,-83,74,22,68```
 - ```74```: Terminal battery percentage
 - ```22```: Temperature read in ºC
 - ```68```: Humidity read in %
+
+---
+
+
+## MQTT - STANDALONE
+
+### Online status
+Function: Standalone current online status<br>
+Topic: ```environment/sensors_async_sad/v0/{serial}/up/lwt```<br>
+Payload: ```0``` or ```1```<br>
+Parameters:
+- **serial**: ```char*```, string 12 characters
+
+---
+
+### Version
+Function: Standalone current firmware version<br>
+Topic: ```environment/sensors_async_sad/v0/{serial}/up/version```<br>
+Payload: ```uint16_t```, positive integer value<br>
+Parameters:
+- **serial**: ```char*```, string 12 characters
+
+---
+
+### Type (WIP)
+**NOTE: This topic is not final, might be changed/removed later in development**<br>
+Function: Identify the type of standalone system<br>
+Topic: ```environment/sensors_async_sad/v0/{serial}/up/type```<br>
+Payload: ```char*```, name of the standalone type<br>
+Parameters:
+- **serial**: ```char*```, string 12 characters
+
+---
+
+### Battery
+Function: Standalone current battery percentage status<br>
+Topic: ```environment/sensors_async_sad/v0/{serial}/up/battery```<br>
+Payload: ```int```, current battery percentage
+
+Parameters:
+- **serial**: ```char*```, string 12 characters
+
+---
+
+### Lux
+Function: Standalone lux sensor current value<br>
+Topic: ```environment/sensors_async_sad/v0/{serial}/up/lux/{sensor_idx}```<br>
+Payload: ```int```, light value in lux
+
+Parameters:
+- **serial**: ```char*```, string 12 characters
+- **sensor_idx**: ```int```, sensor index in the same sensor type, see [sensor_idx table](#topics-sensor_idx-table)
+
+---
+
+### Temperature
+Function: Standalone temperature sensor current value<br>
+Topic: ```environment/sensors_async_sad/v0/{serial}/up/temperature/{sensor_idx}```<br>
+Payload: ```int```, temperature in celcius (ºC)
+
+Parameters:
+- **serial**: ```char*```, string 12 characters
+- **sensor_idx**: ```int```, sensor index in the same sensor type, see [sensor_idx table](#topics-sensor_idx-table)
+
+---
+
+### Humidity
+Function: Standalone humidity sensor current value<br>
+Topic: ```environment/sensors_async_sad/v0/{serial}/up/humidity/{sensor_idx}```<br>
+Payload: ```int```, humidity in percentage (%)
+
+Parameters:
+- **serial**: ```char*```, string 12 characters
+- **sensor_idx**: ```int```, sensor index in the same sensor type, see [sensor_idx table](#topics-sensor_idx-table)
+
+---
+
+### Topics sensor_idx table
+| Standalone Type  | Sensor Topic | sensor_idx | Sensor Description  |
+|------------------|--------------|------------|---------------------|
+| Spriglabs        | Lux          | 0          | Light               |
+| Spriglabs        | Temperature  | 0          | Ambient Temperature |
+| Spriglabs        | Humidity     | 0          | Ambient Humidity    |
+| Spriglabs        | Humidity     | 1          | Soil Humidity       |
 
 ---
 

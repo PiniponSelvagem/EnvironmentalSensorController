@@ -2,7 +2,7 @@
 Temperature and humidity sensor controller (Terminal) that periodically sends its data over LoRa, which then a Gateway that receives it, Publishes to a MQTT broker. This project started as a small project to improve my personal [PiniCore-Embedded](https://github.com/PiniponSelvagem/PiniCore-Embedded) library, and to add some sensors to my Home Assistant system.
 
 
-## How it works
+## How it works (LoRa system)
 At least one Gateway should be installed in the vicinity of the Terminal controllers.
 #### Terminal
 1. Terminal wakes up
@@ -19,6 +19,14 @@ At least one Gateway should be installed in the vicinity of the Terminal control
 3. Unpacks the data and creates a MQTT message
 4. MQTT message is then published in the ***status*** topic
 5. Listens for next LoRa payload
+
+## How it works (Standalone system)
+1. Connects to the congfigured WiFi
+2. Connects to the configured MQTT
+3. When connected to MQTT, periodically publishes the sensors current values
+- Note:
+    - Currently it does not sleep, so do not leave it on battery. Planned feature, sleep just like the *Terminal* variant.
+    - Only supports SprigLabs-C3.
 
 ## Hardware
 ### Terminal
@@ -180,10 +188,10 @@ Parameters:
 ### Topics sensor_idx table
 | Standalone Type  | Sensor Topic | sensor_idx | Sensor Description  |
 |------------------|--------------|------------|---------------------|
-| Spriglabs        | Lux          | 0          | Light               |
-| Spriglabs        | Temperature  | 0          | Ambient Temperature |
-| Spriglabs        | Humidity     | 0          | Ambient Humidity    |
-| Spriglabs        | Humidity     | 1          | Soil Humidity       |
+| SprigLabs        | Lux          | 0          | Light               |
+| SprigLabs        | Temperature  | 0          | Ambient Temperature |
+| SprigLabs        | Humidity     | 0          | Ambient Humidity    |
+| SprigLabs        | Humidity     | 1          | Soil Humidity       |
 
 ---
 

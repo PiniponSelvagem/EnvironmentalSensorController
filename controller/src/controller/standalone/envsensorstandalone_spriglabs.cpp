@@ -29,6 +29,7 @@
 void EnvSensorStandaloneSprigLabs::init(INetwork* network) {
     m_network = network;
 
+    Wire.begin(2, 3); // TODO: PiniCore should manage I2C usage, using a driver that requires should init I2C
     m_sprigC.init();
     m_sprigRoot.init();
 
@@ -96,7 +97,7 @@ void EnvSensorStandaloneSprigLabs::mqttBuildTopics() {
 
     /**** SUBSCRIBE ****/
 
-    LOG_D(PINI_TAG_SA_SL, "MQTT topics callbacks configured");
+    LOG_D(PINI_TAG_SA_SL, "MQTT topics built");
 }
 
 void EnvSensorStandaloneSprigLabs::mqttInit() {

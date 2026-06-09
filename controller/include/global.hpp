@@ -18,20 +18,24 @@
         #define PIN_DHT     13  // Digital Humidity Temperature sensor
         #define PIN_WAKEUP  14  // Wake-up on button press. NOTE: before changing this, check/change the pins in "EnvSensorTerminal::sleep"
     /***************/
-    #define WAKEUP_TIME_MS               10000        // Milliseconds that should stay awake after button press
-    #define SLEEP_TIME_SECS              (15*60)      // Amount of seconds the controller should sleep between sensors reporting
-    #define SLEEP_TIME_SECS_CRITICAL_BAT (7*24*60*60) // Amount of seconds the controller should sleep when battery is critical (TTGO Lora32 does not have low-voltage power cuttoff)
+    #define WAKEUP_TIME_MS               (10*1000)    // Milliseconds that should stay awake after button press
+    #define SLEEP_TIME_SECS              (15*60)      // Seconds the controller should sleep between sensors reporting
+    #define SLEEP_TIME_SECS_CRITICAL_BAT (7*24*60*60) // Seconds the controller should sleep when battery is critical (TTGO Lora32 does not have low-voltage power cuttoff)
 #elif defined(STANDALONE_SPRIGLABS)
     #define USE_NETWORK
     //#define STORAGE_ID "PINI_STANDALONE_ENVSENSOR"
-    #define REPORT_WAIT_TIME_SECS (15*60)   // Amount of seconds the controller should wait between sensors reporting
-    #define REPORT_WAIT_TIME_MS   (REPORT_WAIT_TIME_SECS*1000)
+    /* When sleep mode enabled */
+        #define CONNECT_TIMEOUT_MS           (15*1000)    // Milliseconds the controller will wait for WiFi/MQTT connection before timeout and then sleeping again
+        #define SLEEP_TIME_SECS              (15*60)      // Seconds the controller should sleep between sensors reporting
+        #define SLEEP_TIME_SECS_CRITICAL_BAT (7*24*60*60) // Seconds the controller should sleep when battery is critical (TTGO Lora32 does not have low-voltage power cuttoff)
+    /* When always on mode enabled, non-sleep mode */
+        #define REPORT_WAIT_TIME_SECS (15*60)   // Seconds the controller should wait between sensors reporting
+        #define REPORT_WAIT_TIME_MS   (REPORT_WAIT_TIME_SECS*1000)
 #else
     #error Invalid board configuration!
 #endif
 #define WDTG_INTERNAL_TIMER_IN_SECONDS   120
 //#define USE_GSM_NETWORK   // Use GSM network instead of WiFi. Currently not supported.
-
 
 #ifdef USE_LORA
     /* Common PIN defines */

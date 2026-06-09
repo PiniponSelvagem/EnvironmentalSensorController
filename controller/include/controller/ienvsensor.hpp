@@ -25,6 +25,11 @@ class IEnvSensor {
          */
         virtual void loop() = 0;
 
+        /**
+         * @brief   Restart the controller.
+         */
+        void restart();
+        
 
     private:
         /**

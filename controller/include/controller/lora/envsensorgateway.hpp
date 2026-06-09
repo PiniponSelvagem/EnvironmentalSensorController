@@ -73,9 +73,11 @@ class EnvSensorGateway : public IEnvSensorLora {
         INetwork* m_network;    // Internet network interface.
         MQTT m_mqtt;            // MQTT client.
         //
-        char m_mqttTopicPublish_online[ESG_MQTT_TOPIC_MAX_SIZE];    // PUBLISH topic: online
-        char m_mqttTopicPublish_version[ESG_MQTT_TOPIC_MAX_SIZE];   // PUBLISH topic: firmware version
-        char m_mqttTopicPublish_status[ESG_MQTT_TOPIC_MAX_SIZE];    // PUBLISH topic: terminal status reporting
+        char m_mqttTopicP_online[ESG_MQTT_TOPIC_MAX_SIZE];       // PUBLISH topic: online
+        char m_mqttTopicP_version[ESG_MQTT_TOPIC_MAX_SIZE];      // PUBLISH topic: firmware version
+        char m_mqttTopicP_status[ESG_MQTT_TOPIC_MAX_SIZE];       // PUBLISH topic: terminal status reporting
+        //
+        char m_mqttTopicS_adminRestart[ESG_MQTT_TOPIC_MAX_SIZE]; // SUBSCRIBE topic: remote restart
 };
 
 #endif // _PINICONTROLLER_ENVSENSORGATEWAY_H_

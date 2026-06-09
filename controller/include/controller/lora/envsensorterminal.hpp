@@ -99,7 +99,6 @@ class EnvSensorTerminal : public IEnvSensorLora {
         bool m_uploaded = false;
         Adafruit_SSD1306 m_oled = Adafruit_SSD1306(128, 64); // TODO: Add support for SSD1306 in PiniCore.
 
-        uint64_t m_sensorsReadAt;
         float m_humidity;
         float m_temperature;
         uint8_t m_batteryPercentage;

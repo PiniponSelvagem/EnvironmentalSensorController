@@ -75,8 +75,6 @@ void EnvSensorTerminal::oledInit() {
 }
 
 void EnvSensorTerminal::readSensors() {
-    m_sensorsReadAt = getMillis();
-
     m_humidity = m_sensorTH.readHumidity();
     m_temperature = m_sensorTH.readTemperature();
     m_batteryPercentage = m_battery.getPercentage();

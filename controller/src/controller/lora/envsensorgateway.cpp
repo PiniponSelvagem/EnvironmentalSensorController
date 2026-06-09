@@ -8,13 +8,18 @@
 
 #define ESG_MQTT_TOPIC_FMT_BASE_PATH    "environment/sensors_async/v0/%llu"
 //
+//
+// PUBLISH Topics format
 #define ESG_MQTT_TOPIC_P_FMT            ESG_MQTT_TOPIC_FMT_BASE_PATH "/up"
 #define ESG_MQTT_TOPIC_P_FMT_ONLINE     ESG_MQTT_TOPIC_P_FMT         "/lwt"
 #define ESG_MQTT_TOPIC_P_FMT_VERSION    ESG_MQTT_TOPIC_P_FMT         "/version"
 #define ESG_MQTT_TOPIC_P_FMT_STATUS     ESG_MQTT_TOPIC_P_FMT         "/status"
 //
-#define ESG_MQTT_TOPIC_S_FMT            ESG_MQTT_TOPIC_FMT_BASE_PATH "/down"
-
+// SUBSCRIBE Topics format
+#define ESG_MQTT_TOPIC_S_FMT               ESG_MQTT_TOPIC_FMT_BASE_PATH "/down"    // Subscribe base path
+//
+#define ESG_MQTT_TOPIC_S_FMT_ADMIN         ESG_MQTT_TOPIC_S_FMT         "/admin"   // Subscribe admin commands base path
+#define ESG_MQTT_TOPIC_S_FMT_ADMIN_RESTART ESG_MQTT_TOPIC_S_FMT_ADMIN   "/restart" // Subscribe topic: restart
 
 #define ESG_MQTT_P_BUFFER_STATUS_SIZE   64
 
@@ -52,13 +57,14 @@ radioid_t EnvSensorGateway::myRadioId() const {
 
 void EnvSensorGateway::mqttBuildTopics() {
     /**** PUBLISH ****/
-    snprintf(m_mqttTopicPublish_online,  sizeof(m_mqttTopicPublish_online),  ESG_MQTT_TOPIC_P_FMT_ONLINE,  myRadioId());
-    snprintf(m_mqttTopicPublish_version, sizeof(m_mqttTopicPublish_version), ESG_MQTT_TOPIC_P_FMT_VERSION, myRadioId());
-    snprintf(m_mqttTopicPublish_status,  sizeof(m_mqttTopicPublish_status),  ESG_MQTT_TOPIC_P_FMT_STATUS,  myRadioId());
+    snprintf(m_mqttTopicP_online,  sizeof(m_mqttTopicP_online),  ESG_MQTT_TOPIC_P_FMT_ONLINE,  myRadioId());
+    snprintf(m_mqttTopicP_version, sizeof(m_mqttTopicP_version), ESG_MQTT_TOPIC_P_FMT_VERSION, myRadioId());
+    snprintf(m_mqttTopicP_status,  sizeof(m_mqttTopicP_status),  ESG_MQTT_TOPIC_P_FMT_STATUS,  myRadioId());
 
     /**** SUBSCRIBE ****/
+    snprintf(m_mqttTopicS_adminRestart,  sizeof(m_mqttTopicS_adminRestart),  ESG_MQTT_TOPIC_S_FMT_ADMIN_RESTART, myRadioId());
 
-    LOG_D(PINI_TAG_ESG, "MQTT topics callbacks configured");
+    LOG_D(PINI_TAG_ESG, "MQTT topics built");
 }
 
 void EnvSensorGateway::mqttInit() {
@@ -66,17 +72,17 @@ void EnvSensorGateway::mqttInit() {
     m_mqtt.setServer(MQTT_SERVER, MQTT_PORT);
     m_mqtt.setCredentials(MQTT_USER, MQTT_PASS);
     
-    m_mqtt.setWill(m_mqttTopicPublish_online, "0", 2, true);
+    m_mqtt.setWill(m_mqttTopicP_online, "0", 2, true);
 }
 
 void EnvSensorGateway::mqttSetCallbacks() {
     m_mqtt.onConnect(
         [this]() {
-            m_mqtt.publish(m_mqttTopicPublish_online, "1", true);
+            m_mqtt.publish(m_mqttTopicP_online, "1", true);
 
             char version[ESG_VERSION_BUFFER_MAX];
             snprintf(version, sizeof(version), "%d", FIRMWARE_VERSION);
-            m_mqtt.publish(m_mqttTopicPublish_version, version, false);
+            m_mqtt.publish(m_mqttTopicP_version, version, false);
         }
     );
 
@@ -85,6 +91,26 @@ void EnvSensorGateway::mqttSetCallbacks() {
             LOG_D(PINI_TAG_ESG, "MQTT subscribe: [topic: '%s']", topic);
         }
     );
+
+    // Subscribe: Admin restart command
+    m_mqtt.onTopic(
+        m_mqttTopicS_adminRestart,
+        [this](const char* payload, uint32_t length) {
+            if (length > 0) {
+                char *endptr;
+                int seppuku = (int)strtol((char *)payload, &endptr, 10);
+                if (payload == endptr) {
+                    // Unable to parse secret action, ignoring
+                    return;
+                }
+                if (seppuku == 666) {
+                    restart();
+                }
+            }
+        }
+    );
+
+    LOG_D(PINI_TAG_ESG, "MQTT topics callbacks configured");
 }
 
 void EnvSensorGateway::loraSetCallbacks() {
@@ -120,9 +146,11 @@ void EnvSensorGateway::loraSetCallbacks() {
                 "%llu,%d,%d,%d,%d,%d",
                 radioId, statusPayload->firmware, rssi, statusPayload->battery, statusPayload->temperature, statusPayload->humidity
             );
-            m_mqtt.publish(m_mqttTopicPublish_status, mqttPayload, false);
+            m_mqtt.publish(m_mqttTopicP_status, mqttPayload, false);
         }
     );
+
+    LOG_D(PINI_TAG_ESG, "LoRa callbacks configured");
 }
 
 #endif // GATEWAY

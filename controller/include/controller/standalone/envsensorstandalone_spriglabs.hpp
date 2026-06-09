@@ -21,7 +21,7 @@
 
 using namespace pinicore;
 
-#define ESA_MQTT_TOPIC_MAX_SIZE 64
+#define ESA_MQTT_TOPIC_MAX_SIZE 80
 
 class EnvSensorStandaloneSprigLabs : public IEnvSensor {
     public:

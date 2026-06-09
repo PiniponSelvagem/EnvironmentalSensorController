@@ -21,7 +21,7 @@
 
 using namespace pinicore;
 
-#define ESG_MQTT_TOPIC_MAX_SIZE 64
+#define ESG_MQTT_TOPIC_MAX_SIZE 80
 
 class EnvSensorGateway : public IEnvSensorLora {
     public:
